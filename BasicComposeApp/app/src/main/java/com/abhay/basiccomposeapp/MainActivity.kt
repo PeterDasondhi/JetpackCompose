@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -50,38 +51,53 @@ fun GreetingPreview() {
 
 @Composable
 fun CreateProfileCardView() {
-    Surface(
+    Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight(),
-        color = MaterialTheme.colorScheme.background
+            .padding(10.dp)
+            .width(500.dp)
     ) {
-        Card(
+        Surface(
             modifier = Modifier
-                .width(200.dp)
-                .height(390.dp)
-                .padding(5.dp),
-            shape = RoundedCornerShape(corner = CornerSize(15.dp)),
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFFE0E0E0),
-            )
+                .fillMaxWidth()
+                .fillMaxHeight(),
+            color = MaterialTheme.colorScheme.background
         ) {
-
-            CreateProfileImageView()
-            Divider()
-
-            Column(
+            Card(
                 modifier = Modifier
-                    .padding(10.dp)
-                    .align(Alignment.CenterHorizontally)
+                    .width(200.dp)
+                    .height(390.dp)
+                    .padding(5.dp),
+                shape = RoundedCornerShape(corner = CornerSize(15.dp)),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFFE0E0E0),
+                )
             ) {
 
-                Text(text = "Abhay",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = Color.Black)
+                CreateProfileImageView()
+                Divider()
 
-                Text(text = "S")
+                Column(
+                    modifier = Modifier
+                        .padding(10.dp)
+                ) {
 
+                    Text(
+                        text = "Name : Abhay",
+                        style = MaterialTheme.typography.titleMedium,
+                        color = Color.Black
+                    )
+
+                    Text(text = "Android Compose Programmer",
+                        style = MaterialTheme.typography.titleSmall,
+                        color = Color.Black
+                    )
+
+                    Text(text = "@abhaykumardasondhi@gmail.com",
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = Color.Black
+                    )
+
+                }
             }
         }
     }
@@ -89,19 +105,27 @@ fun CreateProfileCardView() {
 
 @Composable
 fun CreateProfileImageView() {
-    Surface(
-        shape = CircleShape,
+    Column(
         modifier = Modifier
-            .width(200.dp)
-            .height(200.dp)
-            .padding(5.dp),
-        border = BorderStroke(0.5.dp, Color.LightGray),
-        shadowElevation = 4.dp,
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+            .fillMaxWidth()
+            .padding(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Surface(
+            shape = CircleShape,
+            modifier = Modifier
+                .width(200.dp)
+                .height(200.dp)
+                .padding(5.dp),
+            border = BorderStroke(0.5.dp, Color.LightGray),
+            shadowElevation = 4.dp,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f)
+        ) {
 
-        Image(painter = painterResource(id = R.drawable.photo),
-            contentDescription = "Profile Image",
-            modifier = Modifier.size(135.dp))
+            Image(
+                painter = painterResource(id = R.drawable.photo),
+                contentDescription = "Profile Image"
+            )
+        }
     }
 }
